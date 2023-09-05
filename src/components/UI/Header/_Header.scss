@@ -1,0 +1,15 @@
+.header {
+  width: max-content;
+  margin: 50px auto;
+  &__logo {
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow($shadow-params);
+    a,
+    a img {
+      width: inherit;
+      height: inherit;
+    }
+  }
+}

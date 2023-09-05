@@ -1,6 +1,33 @@
+$primary-color: rgb(255, 128, 0);
+$second-color: rgb(87, 199, 237);
+$animation-duration: 0.2s;
+$shadow-params: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', system-ui;
 }
+
+body {
+  height: 100vh;
+  background: rgb(237, 237, 237);
+}
+
+a {
+  font-size: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@import './components/UI/Btn/Btn';
+@import './components/UI/Header/Header';
+@import './components/App/App';
+@import './components/TicketsItem/Ticket';
+@import './components/TicketsList/Tickets';

@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import ticketsReducer from './slices/tickets';
+
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    tickets: ticketsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
