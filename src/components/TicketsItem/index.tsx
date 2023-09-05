@@ -5,6 +5,7 @@ import s7LogoPath from './logos/s7.png';
 import suLogoPath from './logos/su.png';
 import turkishLogoPath from './logos/tk.webp';
 import noImagePath from './logos/no-image.png';
+import planeIconPath from './plane.svg';
 import Btn from '../UI/Btn';
 
 interface TicketsItemProps {
@@ -39,13 +40,12 @@ function TicketsItem({ ticket }: TicketsItemProps) {
   };
 
   const transferFormat = (count: number): string => {
-    switch (count) {
-      case 1:
-        return 'Пересадка';
-      case 2 || 3 || 4:
-        return 'Пересадки';
-      default:
-        return 'Пересадок';
+    if (count === 1) {
+      return 'Пересадка';
+    } else if (count <= 4) {
+      return 'Пересадки';
+    } else {
+      return 'Пересадок';
     }
   };
 
@@ -67,11 +67,13 @@ function TicketsItem({ ticket }: TicketsItemProps) {
             {ticket.departure_date},{getDay(ticket.departure_date)}
           </div>
         </div>
-        {ticket.stops ? (
-          <div className="ticket__transfer">
-            {ticket.stops} {transferFormat(ticket.stops)}
+        <div className="ticket__transfer">
+          {ticket.stops ? `${ticket.stops} ${transferFormat(ticket.stops)}` : 'Без пересадок'}
+          <div className="ticket__transfer-line">
+            <div></div>
+            <img src={planeIconPath} alt="plane" />
           </div>
-        ) : null}
+        </div>
         <div className="ticket__wrapper">
           <div className="ticket__wrapper-time">{ticket.arrival_time}</div>
           <div className="ticket__wrapper-geo">
