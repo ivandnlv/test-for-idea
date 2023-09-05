@@ -1,11 +1,11 @@
+import axios from 'axios';
 import { Ticket } from '../types';
 
 async function getTickets(): Promise<Ticket[]> {
   try {
-    const data = await fetch('../../tickets.json');
-    const items = await data.json();
+    const { data } = await axios.get('../../tickets.json');
 
-    return items.tickets;
+    return data.tickets;
   } catch (error) {
     throw new Error('Произошла ошибка при загрузке данных');
   }

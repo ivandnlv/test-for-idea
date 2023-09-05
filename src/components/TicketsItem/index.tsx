@@ -3,7 +3,7 @@ import { Ticket } from '../../types';
 import britishLogoPath from './logos/ba.svg';
 import s7LogoPath from './logos/s7.png';
 import suLogoPath from './logos/su.png';
-import turkishLogoPath from './logos/tk.webp';
+import turkishLogoPath from './logos/tk.png';
 import noImagePath from './logos/no-image.png';
 import planeIconPath from './plane.svg';
 import Btn from '../UI/Btn';
@@ -34,7 +34,7 @@ function TicketsItem({ ticket }: TicketsItemProps) {
     console.log('buy');
   };
 
-  const getDay = (date: string) => {
+  const getDayName = (date: string) => {
     const day = new Date(date).getDay();
     return daysOfWeek[day];
   };
@@ -52,7 +52,9 @@ function TicketsItem({ ticket }: TicketsItemProps) {
   return (
     <div className="ticket">
       <div className="ticket__left">
-        <img src={initLogoPath()} alt={ticket.carrier} />
+        <div className="img">
+          <img src={initLogoPath()} alt={ticket.carrier} />
+        </div>
         <Btn clickFunc={onBuyClick}>
           Купить за <br /> {ticket.price.toLocaleString()}₽
         </Btn>
@@ -64,7 +66,7 @@ function TicketsItem({ ticket }: TicketsItemProps) {
             {ticket.origin}, {ticket.origin_name}
           </div>
           <div className="ticket__wrapper-date">
-            {ticket.departure_date},{getDay(ticket.departure_date)}
+            {ticket.departure_date},{getDayName(ticket.departure_date)}
           </div>
         </div>
         <div className="ticket__transfer">
@@ -80,7 +82,7 @@ function TicketsItem({ ticket }: TicketsItemProps) {
             {ticket.destination}, {ticket.destination_name}
           </div>
           <div className="ticket__wrapper-date">
-            {ticket.arrival_date},{getDay(ticket.arrival_date)}
+            {ticket.arrival_date},{getDayName(ticket.arrival_date)}
           </div>
         </div>
       </div>

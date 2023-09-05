@@ -19,7 +19,7 @@ function TicketsList() {
       {/* Билеты */}
       {status === 'success' && tickets ? (
         tickets.map((ticket, i) => <TicketsItem ticket={ticket} key={i} />)
-      ) : !tickets ? (
+      ) : status === 'success' && !tickets ? (
         <div>Нет билетов</div>
       ) : null}
       {/* Загрузка */}
