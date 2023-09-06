@@ -1,5 +1,5 @@
 $primary-color: rgb(255, 128, 0);
-$second-color: rgb(87, 199, 237);
+$second-color: rgb(0, 162, 255);
 $animation-duration: 0.2s;
 $shadow-params: 2px 2px 5px rgba(0, 0, 0, 0.3);
 
@@ -21,9 +21,16 @@ a {
   color: inherit;
 }
 
+button {
+  border: none;
+  outline: none;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 @import './components/UI/Btn/Btn';
@@ -31,3 +38,4 @@ a {
 @import './components/App/App';
 @import './components/TicketsItem/Ticket';
 @import './components/TicketsList/Tickets';
+@import './components/Filters/Filters';

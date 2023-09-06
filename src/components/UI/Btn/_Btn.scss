@@ -5,8 +5,6 @@
   border-radius: 10px;
   font-size: 1em;
   padding: 10px 20px;
-  border: none;
-  outline: none;
   transition: background $animation-duration ease-in-out;
   &:hover {
     background: lighten($primary-color, 10%);

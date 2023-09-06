@@ -1,4 +1,5 @@
 import { Ticket } from '../../types';
+import { transferFormat } from '../../utils/formatters';
 
 import britishLogoPath from './logos/ba.svg';
 import s7LogoPath from './logos/s7.png';
@@ -7,6 +8,7 @@ import turkishLogoPath from './logos/tk.png';
 import noImagePath from './logos/no-image.png';
 import planeIconPath from './plane.svg';
 import Btn from '../UI/Btn';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 interface TicketsItemProps {
   ticket: Ticket;
@@ -15,6 +17,8 @@ interface TicketsItemProps {
 const daysOfWeek = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
 
 function TicketsItem({ ticket }: TicketsItemProps) {
+  const currency = useTypedSelector((state) => state.tickets.filters.currency);
+
   const initLogoPath = (): string => {
     switch (ticket.carrier) {
       case 'TK':
@@ -39,16 +43,6 @@ function TicketsItem({ ticket }: TicketsItemProps) {
     return daysOfWeek[day];
   };
 
-  const transferFormat = (count: number): string => {
-    if (count === 1) {
-      return 'Пересадка';
-    } else if (count <= 4) {
-      return 'Пересадки';
-    } else {
-      return 'Пересадок';
-    }
-  };
-
   return (
     <div className="ticket">
       <div className="ticket__left">
@@ -56,7 +50,8 @@ function TicketsItem({ ticket }: TicketsItemProps) {
           <img src={initLogoPath()} alt={ticket.carrier} />
         </div>
         <Btn clickFunc={onBuyClick}>
-          Купить за <br /> {ticket.price.toLocaleString()}₽
+          Купить за <br /> {Math.round(ticket.price).toLocaleString()}
+          {currency === 'rub' ? '₽' : currency === 'usd' ? '$' : '€'}
         </Btn>
       </div>
       <div className="ticket__right">
